@@ -15,15 +15,14 @@ async function activateXR() {
   
     const scene = new THREE.Scene();
   
-  // Create the cube and add it to the demo scene.
-  // const cube = new THREE.Mesh(new THREE.BoxBufferGeometry(0.2, 0.2, 0.2), materials);
-  // cube.position.set(1, 1, 1);
-  // scene.add(cube);
+  const cube = new THREE.Mesh(new THREE.BoxBufferGeometry(0.2, 0.2, 0.2), materials);
+  cube.position.set(1, 1, 1);
+  scene.add(cube);
 
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
-  directionalLight.position.set(10, 15, 10);
-  scene.add(directionalLight);
+  // const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
+  // directionalLight.position.set(10, 15, 10);
+  // scene.add(directionalLight);
   
   // Set up the WebGLRenderer, which handles rendering to the session's base layer.
   const renderer = new THREE.WebGLRenderer({
@@ -57,14 +56,14 @@ async function activateXR() {
 
   const loader = new THREE.GLTFLoader();
   let reticle;
-  loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function(gltf) {
+  loader.load("reticle.gltf", function(gltf) {
     reticle = gltf.scene;
     reticle.visible = false;
     scene.add(reticle);
   })
 
   let flower;
-  loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function(gltf) {
+  loader.load("sunflower.gltf", function(gltf) {
     flower = gltf.scene;
   });
 
