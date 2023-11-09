@@ -12,6 +12,10 @@
 </head>
 <body>
 <button onclick="activateXR()">Start Hello WebXR</button>
+<div>
+  
+</div>
+<img src="marker.webp" alt="">
 <script>
   async function activateXR() {
     const canvas = document.createElement("canvas");
@@ -48,7 +52,9 @@
     const camera = new THREE.PerspectiveCamera();
     camera.matrixAutoUpdate = false;
 
-    const imgBitmap = await createImageBitmap('flower.jpg');
+
+    const img = document.getElementById('img');
+    const imgBitmap = await createImageBitmap(img);
 
     const session = await navigator.xr.requestSession("immersive-ar",
       {
