@@ -54,18 +54,18 @@ async function activateXR() {
   // Perform hit testing using the viewer as origin.
   const hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
 
-  const loader = new THREE.GLTFLoader();
-  let reticle;
-  loader.load("reticle.gltf", function(gltf) {
-    reticle = gltf.scene;
-    reticle.visible = false;
-    scene.add(reticle);
-  })
+  // const loader = new THREE.GLTFLoader();
+  // let reticle;
+  // loader.load("reticle.gltf", function(gltf) {
+  //   reticle = gltf.scene;
+  //   reticle.visible = false;
+  //   scene.add(reticle);
+  // })
 
-  let flower;
-  loader.load("sunflower.gltf", function(gltf) {
-    flower = gltf.scene;
-  });
+  // let flower;
+  // loader.load("sunflower.gltf", function(gltf) {
+  //   flower = gltf.scene;
+  // });
 
   session.addEventListener("select", (event) => {
     if (flower) {
