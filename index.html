@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>changed</title>
+  <title>hanged</title>
 
   <!-- three.js -->
   <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
@@ -69,11 +69,11 @@
   });
 
   session.addEventListener("select", (event) => {
-  if (flower) {
-    const clone = flower.clone();
-    clone.position.copy(reticle.position);
-    scene.add(clone);
-  }
+    if (flower) {
+      const clone = flower.clone();
+      clone.position.copy(reticle.position);
+      scene.add(clone);
+    }
   });
   const onXRFrame = (time, frame) => {
     // Queue up the next draw request.
