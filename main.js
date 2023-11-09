@@ -67,13 +67,13 @@ async function activateXR() {
   //   flower = gltf.scene;
   // });
 
-  session.addEventListener("select", (event) => {
-    if (flower) {
-      const clone = flower.clone();
-      clone.position.copy(reticle.position);
-      scene.add(clone);
-    }
-  });
+  // session.addEventListener("select", (event) => {
+  //   if (flower) {
+  //     const clone = flower.clone();
+  //     clone.position.copy(reticle.position);
+  //     scene.add(clone);
+  //   }
+  // });
   
   // Create a render loop that allows us to draw on the AR view.
   const onXRFrame = (time, frame) => {
@@ -98,13 +98,13 @@ async function activateXR() {
       camera.projectionMatrix.fromArray(view.projectionMatrix);
       camera.updateMatrixWorld(true);
 
-    const hitTestResults = frame.getHitTestResults(hitTestSource);
-    if (hitTestResults.length > 0 && reticle) {
-      const hitPose = hitTestResults[0].getPose(referenceSpace);
-      reticle.visible = true;
-      reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
-      reticle.updateMatrixWorld(true);
-    }
+    // const hitTestResults = frame.getHitTestResults(hitTestSource);
+    // if (hitTestResults.length > 0 && reticle) {
+    //   const hitPose = hitTestResults[0].getPose(referenceSpace);
+    //   reticle.visible = true;
+    //   reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+    //   reticle.updateMatrixWorld(true);
+    // }
   
       // Render the scene with THREE.WebGLRenderer.
       renderer.render(scene, camera)
