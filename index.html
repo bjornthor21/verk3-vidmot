@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <title>changed</title>
+  <title>hanged</title>
 
   <!-- three.js -->
   <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
@@ -64,25 +64,27 @@
 
     const loader = new THREE.GLTFLoader();
 
-    let reticle;
-    loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function(gltf) {
-      reticle = gltf.scene;
-      reticle.visible = false;
-      scene.add(reticle);
-    })
+    // let reticle;
+    // loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function(gltf) {
+    //   reticle = gltf.scene;
+    //   reticle.visible = false;
+    //   scene.add(reticle);
+    // })
 
     let flower;
     loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function(gltf) {
       flower = gltf.scene;
     });
 
-    session.addEventListener("select", (event) => {
-      if (flower) {
-        const clone = flower.clone();
-        clone.position.copy(reticle.position);
-        scene.add(clone);
-      }
-    });
+    scene.add(flower);
+
+    // session.addEventListener("select", (event) => {
+    //   if (flower) {
+    //     const clone = flower.clone();
+    //     clone.position.copy(reticle.position);
+    //     scene.add(clone);
+    //   }
+    // });
     const onXRFrame = (time, frame) => {
       session.requestAnimationFrame(onXRFrame);
 
@@ -99,13 +101,13 @@
         camera.projectionMatrix.fromArray(view.projectionMatrix);
         camera.updateMatrixWorld(true);
 
-        const hitTestResults = frame.getHitTestResults(hitTestSource);
-        if (hitTestResults.length > 0 && reticle) {
-          const hitPose = hitTestResults[0].getPose(referenceSpace);
-          reticle.visible = true;
-          reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
-          reticle.updateMatrixWorld(true);
-        }
+        // const hitTestResults = frame.getHitTestResults(hitTestSource);
+        // if (hitTestResults.length > 0 && reticle) {
+        //   const hitPose = hitTestResults[0].getPose(referenceSpace);
+        //   // reticle.visible = true;
+        //   reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+        //   reticle.updateMatrixWorld(true);
+        // }
         renderer.render(scene, camera)
       }
     }
