@@ -114,18 +114,40 @@
 
 <html>
   <head>
-    <script src="<https://cdn.jsdelivr.net/gh/aframevr/aframe@0d23f9b21c33ab6821046ce95835492cb84996c5/dist/aframe-master.min.js>"></script>
-    <title>hanged</title>
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe/dist/aframe-master.min.js"></script>
   </head>
   <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+    <a-scene ar-hit-test="target:#objects;" webxr reflection="directionalLight:#real-light">
+      <a-camera position="0 0.4 0" wasd-controls="acceleration:10;"></a-camera>
+
+      <a-entity id="objects" scale="0.2 0.2 0.2" position="0 0 -1">
+        <a-box position="-1 0.5 1" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      </a-entity>
+
+      <a-light id="real-light" type="directional" light="castShadow:true;shadowCameraAutomatic:#objects;" position="1 1 1" intensity="0.5"></a-light>
+      <a-plane id="shadow-plane" follow-shadow="#objects" material="shader:shadow" shadow="cast:false;" rotation="-90 0 0" width="2" height="2"></a-plane>
+
+      <script>
+        AFRAME.registerComponent('follow-shadow', {
+          schema: {type: 'selector'},
+          init() {this.el.object3D.renderOrder = -1;},
+          tick() {
+            if (this.data) {
+              this.el.object3D.position.copy(this.data.object3D.position); 
+              this.el.object3D.position.y -= 0.001; // stop z-fighting
+            }
+          }
+        });
+      </script>
+
+      <script>
+        const scene = document.querySelector('a-scene');
+        const data = scene.getAttribute('renderer');
+        data.exposure = 0.5; // Adjust as needed
+        scene.setAttribute('renderer', data);
+      </script>
     </a-scene>
-    <a-scene ar-hit-test="target:#objects;" webxr reflection="directionalLight:#real-light"
->   <a-light id="real-light" type="directional" position="1 1 1" intensity="0.5"></a-light>
   </body>
 </html>
