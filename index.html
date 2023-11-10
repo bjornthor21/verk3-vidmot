@@ -7,8 +7,8 @@
   <title>hanged</title>
 
   <!-- three.js -->
-  <script src="https://unpkg.com/three@0.158.0/build/three.js"></script>
-  <script src="https://unpkg.com/three@0.158.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://unpkg.com/three@0.126.0/build/three.js"></script>
+  <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 <body>
 <button onclick="activateXR()">Start Hello WebXR</button>
@@ -50,12 +50,7 @@
 
     const session = await navigator.xr.requestSession("immersive-ar",
       {
-        requiredFeatures: ['hit-test', 'depth-sensing'],
-        depthSensing: 
-          {
-            usagePreference: ["cpu-optimized", "gpu-optimized"],
-            formatPreference: ["luminance-alpha", "float32"]
-          }
+        requiredFeatures: ['hit-test'],
       });
 
     console.log(session.depthUsage);
