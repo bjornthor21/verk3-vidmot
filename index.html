@@ -50,9 +50,16 @@
 
     const session = await navigator.xr.requestSession("immersive-ar",
       {
-        requiredFeatures: ['hit-test'],
+        requiredFeatures: ['hit-test', 'depth-sensing'],
+        depthSensing: 
+          {
+            usagePreference: ["cpu-optimized", "gpu-optimized"],
+            formatPreference: ["luminance-alpha", "float32"]
+          }
       });
 
+    console.log(session.depthUsage);
+    console.log(session.depthFormat);
     session.updateRenderState({
       baseLayer: new XRWebGLLayer(session, gl)
     });
