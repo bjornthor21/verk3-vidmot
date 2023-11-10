@@ -117,7 +117,7 @@
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe/dist/aframe-master.min.js"></script>
   </head>
   <body>
-    <a-scene ar-hit-test="target:#objects;" webxr reflection="directionalLight:#real-light">
+    <a-scene reflection="directionalLight:#real-light" ar-hit-test="target:#objects;" webxr renderer="physicallyCorrectLights:true; colorManagement:true; exposure:1; toneMapping:ACESFilmic;">
       <a-camera position="0 0.4 0" wasd-controls="acceleration:10;"></a-camera>
 
       <a-entity id="objects" scale="0.2 0.2 0.2" position="0 0 -1">
