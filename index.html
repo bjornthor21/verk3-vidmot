@@ -69,7 +69,7 @@
     })
 
     let model;
-    loader.load("https://github.com/immersive-web/webxr-samples/blob/main/media/gltf/sunflower/sunflower.gltf", function(gltf) {
+    loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function(gltf) {
       model = gltf.scene;
     });
 
@@ -97,6 +97,7 @@
         camera.updateMatrixWorld(true);
 
         const hitTestResults = frame.getHitTestResults(hitTestSource);
+        
         if (hitTestResults.length > 0 && reticle) {
           const hitPose = hitTestResults[0].getPose(referenceSpace);
           reticle.visible = true;
